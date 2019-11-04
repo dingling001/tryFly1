@@ -336,6 +336,20 @@ input[type='text'], input[type='number'] {
     background-image: url("../imgs/form_arrow.png");
     background-position: 5rem center;
 }
+.arrow select {
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    flex: 1;
+    padding: 0 .25rem;
+}
+.arrow select option{
+    background: none;
+    border: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color:transparent;
+}
+
 
 .formbtn{
     width:6.48rem;
