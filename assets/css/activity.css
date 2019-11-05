@@ -458,13 +458,13 @@ input[type='text'], input[type='number'] {
 }
 
 .nameleft .ntop {
-    line-height: .64rem;
     background: linear-gradient(180deg, rgba(212, 59, 155, .4), rgba(131, 12, 189, .4));
 }
 
 .nameleft .nbottom {
     line-height: .64rem;
 }
+
 
 .nameright {
     flex: 1;
@@ -479,6 +479,10 @@ input[type='text'], input[type='number'] {
     height: .6rem;
     flex-shrink: 0;
 
+}
+
+.car1 {
+    display: none;
 }
 
 .nameright .imgright img {
@@ -548,13 +552,16 @@ input[type='text'], input[type='number'] {
     width: 100%;
     height: 100%;
 }
-.weui-dialog__ft{
+
+.weui-dialog__ft {
     display: block;
-padding: .2rem 0;
+    padding: .2rem 0;
 }
-.weui-dialog__ft:after{
+
+.weui-dialog__ft:after {
     border: 0;
 }
+
 .gameknow {
     width: 5.16rem;
     flex-shrink: 0;

@@ -80,16 +80,24 @@
         <div class="jmct_title"><img src="../assets/imgs/jmct_title.png" alt=""></div>
         <div class="carname">
             <div class="nameleft">
-                <div class="ntop">吉利</div>
+                <div class="nbottom ntop" id="jili">吉利</div>
                 <div class="nbottom" id="choosetype">全新金刚</div>
             </div>
-            <div class="nameright ">
-                <div class="imgright"><img src="../assets/imgs/caricon2.jpeg" alt="" id="cartypeimg"></div>
-                <div class="arrow"><input type="text" id="cartype" value="全新金刚"/></div>
+            <div class="car">
+                <div class="nameright">
+                    <div class="imgright"><img src="../assets/imgs/caricon.jpg" alt="" id="cartypeimg"></div>
+                    <div class="arrow"><input type="text" id="cartype" value="全新金刚"/></div>
+                </div>
+            </div>
+            <div class="car1">
+                <div class="nameright">
+                    <div class="imgright"><img src="../assets/imgs/caricon1.jpeg" alt="" id="cartypeimg1"></div>
+                    <div class="arrow"><input type="text" id="cartype1" value="远景"/></div>
+                </div>
             </div>
         </div>
         <div class="swiper-container carimgs">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" id="lubo">
                 <div class="swiper-slide"><img src="../assets/imgs/c1.png" alt=""></div>
                 <div class="swiper-slide"><img src="../assets/imgs/c2.jpg" alt=""></div>
                 <div class="swiper-slide"><img src="../assets/imgs/c3.jpg" alt=""></div>
@@ -111,16 +119,81 @@
     $(document).ready(function () {
         // 车类型数据
         var cartypedata = [
-            {value: '全新金刚', id: 1, img: '../assets/imgs/caricon.jpg'},
-            {value: '新帝豪三厢', id: 2, img: '../assets/imgs/caricon1.jpeg'},
-            {value: '全球鹰', id: 3, img: '../assets/imgs/caricon2.jpeg'},
-            {value: '新远景', id: 4, img: '../assets/imgs/caricon.jpg'},
-            {value: '博越PRO', id: 5, img: '../assets/imgs/caricon2.jpeg'},
+            [
+                {
+                    value: '全新金刚',
+                    id: 1,
+                    img: '../assets/imgs/caricon.jpg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '新帝豪三厢',
+                    id: 2,
+                    img: '../assets/imgs/caricon1.jpeg',
+                    lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
+                },
+                {
+                    value: '全球鹰',
+                    id: 3,
+                    img: '../assets/imgs/caricon2.jpeg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '新远景',
+                    id: 4,
+                    img: '../assets/imgs/caricon.jpg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '博越PRO',
+                    id: 5,
+                    img: '../assets/imgs/caricon2.jpeg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+            ],
+            [
+                {
+                    value: '金刚',
+                    id: 11,
+                    img: '../assets/imgs/caricon1.jpeg',
+                    lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '帝豪三厢',
+                    id: 22,
+                    img: '../assets/imgs/caricon2.jpeg',
+                    lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '全球鹰',
+                    id: 33,
+                    img: '../assets/imgs/caricon.jpg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '远景',
+                    id: 44,
+                    img: '../assets/imgs/caricon1.jpeg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+                {
+                    value: '博越',
+                    id: 55,
+                    img: '../assets/imgs/caricon2.jpeg',
+                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                },
+            ]];
+        var carArr = [
+            {name: '吉利', list: ['全新金刚', '新帝豪三厢', '全球鹰', '新远景', '博越PRO']},
+            {name: '领克', list: ['金刚', '帝豪三厢', '全球鹰', '远景', '博越']}
         ];
-        var name = $('#name').val();
-        var tel = $('#tel').val();
-        var cityvalue = '';
-        var cartypeid = '';
+        var name = $('#name').val();//姓名
+        var tel = $('#tel').val();//电话
+        var cityvalue = '';//城市
+        var cartypeid = '';//表单车型id
+        var html = '';//领克轮播
+        var html1 = '';//全新金刚轮播
+
         // 省市初始化
         $("#city-picker").cityPicker({
             showDistrict: false,
@@ -128,8 +201,8 @@
         }).change(function () {
             // console.log($(this).val());
             cityvalue = $(this).val();
-        })
-        // 车型选择
+        });
+        // 表单车型选择
         $("#car").picker({
             title: "请选择车型",
             cols: [
@@ -145,23 +218,48 @@
                 }
             }
         })
+        // 展示吉利车型选择
         $("#cartype").picker({
-            title: "选择车型",
+            title: "选择吉利车型",
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['全新金刚', '新帝豪三厢', '全球鹰', '新远景', '博越PRO']
+                    values: carArr[0].list
                 }
             ]
         }).change(function () {
             var cartype = $('#cartype').val();
-            $('#choosetype').text(cartype);
-            for (var i in cartypedata) {
-                if (cartypedata[i].value == cartype) {
-                    $('#cartypeimg').attr('src', cartypedata[i].img);
+            for (var i in cartypedata[0]) {
+                if (cartypedata[0][i].value == cartype) {
+                    $('#cartypeimg').attr('src', cartypedata[0][i].img);
+                    for (var x in cartypedata[0][i].lubo) {
+                        html += `<div class="swiper-slide"><img src="${cartypedata[0][i].lubo[x]}" alt=""></div>`
+                    }
+                    $('#lubo').html(html)
                 }
             }
         })
+        // 展示全新金刚车型选择
+        $("#cartype1").picker({
+            title: "选择全新金刚车型",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: carArr[1].list
+                }
+            ]
+        }).change(function () {
+            var cartype1 = $('#cartype1').val();
+            for (var j in cartypedata[1]) {
+                if (cartypedata[1][j].value == cartype1) {
+                    $('#cartypeimg1').attr('src', cartypedata[1][j].img);
+                    for (var y in cartypedata[1][j].lubo) {
+                        html1 += `<div class="swiper-slide"><img src="${cartypedata[1][j].lubo[y]}" alt=""></div>`
+                    }
+                    $('#lubo').html(html1)
+                }
+            }
+        });
         // 底部轮播图
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
@@ -195,7 +293,7 @@
                     },
                 ]
             });
-        })
+        });
         // 确认提交
         $('#orderform').click(function () {
             if (name == '') {
@@ -209,6 +307,21 @@
             } else {
                 // TO DO
             }
-        })
+        });
+        // 切换车类
+        $('#jili').click(function () {
+            if ($(this).hasClass('ntop')) return;
+            $(this).addClass('ntop');
+            $('#choosetype').removeClass('ntop');
+            $('.car1').animate({width: 'toggle'}, '0').hide();
+            $('.car').animate({width: 'toggle'}, 'atuo').show();
+        });
+        $('#choosetype').click(function () {
+            if ($(this).hasClass('ntop')) return;
+            $(this).addClass('ntop');
+            $('#jili').removeClass('ntop');
+            $('.car').animate({width: 'toggle'}, '0').hide();
+            $('.car1').animate({width: 'toggle'}, 'atuo').show();
+        });
     })
 </script>
