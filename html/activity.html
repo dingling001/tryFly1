@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="app">
-    <div class="topimg"><img src="../assets/imgs/banner.jpg" alt=""></div>
+    <div class="topimg"><img src="../assets/imgs/banner.png" alt=""></div>
     <div class="bg bg1">
         <div class="bg dcyl_bg">
             <div class="content">
@@ -81,16 +81,16 @@
         <div class="carname">
             <div class="nameleft">
                 <div class="ntop">吉利</div>
-                <div class="nbottom" id="choosetype">领克</div>
+                <div class="nbottom" id="choosetype">全新金刚</div>
             </div>
             <div class="nameright ">
                 <div class="imgright"><img src="../assets/imgs/caricon2.jpeg" alt="" id="cartypeimg"></div>
-                <div class="arrow"><input type="text" id="cartype" value="领克"/></div>
+                <div class="arrow"><input type="text" id="cartype" value="全新金刚"/></div>
             </div>
         </div>
         <div class="swiper-container carimgs">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="../assets/imgs/c1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="../assets/imgs/c1.png" alt=""></div>
                 <div class="swiper-slide"><img src="../assets/imgs/c2.jpg" alt=""></div>
                 <div class="swiper-slide"><img src="../assets/imgs/c3.jpg" alt=""></div>
             </div>
@@ -111,11 +111,11 @@
     $(document).ready(function () {
         // 车类型数据
         var cartypedata = [
-            {value: '英伦', id: 1, img: '../assets/imgs/caricon.jpg'},
-            {value: '帝豪', id: 2, img: '../assets/imgs/caricon1.jpeg'},
+            {value: '全新金刚', id: 1, img: '../assets/imgs/caricon.jpg'},
+            {value: '新帝豪三厢', id: 2, img: '../assets/imgs/caricon1.jpeg'},
             {value: '全球鹰', id: 3, img: '../assets/imgs/caricon2.jpeg'},
-            {value: '沃尔沃', id: 4, img: '../assets/imgs/caricon.jpg'},
-            {value: '领克', id: 5, img: '../assets/imgs/caricon2.jpeg'},
+            {value: '新远景', id: 4, img: '../assets/imgs/caricon.jpg'},
+            {value: '博越PRO', id: 5, img: '../assets/imgs/caricon2.jpeg'},
         ];
         var name = $('#name').val();
         var tel = $('#tel').val();
@@ -150,7 +150,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['英伦', '帝豪', '全球鹰', '沃尔沃', '领克']
+                    values: ['全新金刚', '新帝豪三厢', '全球鹰', '新远景', '博越PRO']
                 }
             ]
         }).change(function () {
@@ -211,5 +211,4 @@
             }
         })
     })
-
 </script>
