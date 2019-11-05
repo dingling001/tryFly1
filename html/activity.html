@@ -64,7 +64,7 @@
             <input type="text" id="car"/>
         </div>
         <div class="inputbox"><label for="name">备注</label><input type="text" placeholder="" id="remark"></div>
-        <div class="formbtn">确认提交</div>
+        <div class="formbtn" id="orderform">确认提交</div>
     </form>
     <form class="form" id="successcarbox">
         <div class="fapiao">
@@ -72,7 +72,7 @@
             <div>上传发票</div>
             <input type="file">
         </div>
-        <div class="formbtn">确认提交</div>
+        <div class="formbtn" id="fapiao">确认提交</div>
     </form>
 
     <div class="agreement">点击确认提交、上传发票 即视为同意《个人信息保护声明》您的个人资料将会提交至吉利厂商的授权经销商或车集市客服与您进一步沟通购车事宜。</div>
@@ -85,7 +85,7 @@
             </div>
             <div class="nameright ">
                 <div class="imgright"><img src="../assets/imgs/caricon2.jpeg" alt="" id="cartypeimg"></div>
-                <div class="arrow"><input type="text" id="cartype" value="领克" onChange="choosetype()"/></div>
+                <div class="arrow"><input type="text" id="cartype" value="领克"/></div>
             </div>
         </div>
         <div class="swiper-container carimgs">
@@ -109,12 +109,27 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        // 车类型数据
+        var cartypedata = [
+            {value: '英伦', id: 1, img: '../assets/imgs/caricon.jpg'},
+            {value: '帝豪', id: 2, img: '../assets/imgs/caricon1.jpeg'},
+            {value: '全球鹰', id: 3, img: '../assets/imgs/caricon2.jpeg'},
+            {value: '沃尔沃', id: 4, img: '../assets/imgs/caricon.jpg'},
+            {value: '领克', id: 5, img: '../assets/imgs/caricon2.jpeg'},
+        ];
+        var name = $('#name').val();
+        var tel = $('#tel').val();
+        var cityvalue = '';
+        var cartypeid = '';
         // 省市初始化
         $("#city-picker").cityPicker({
             showDistrict: false,
             title: '选择省市'
-        });
-
+        }).change(function () {
+            // console.log($(this).val());
+            cityvalue = $(this).val();
+        })
+        // 车型选择
         $("#car").picker({
             title: "请选择车型",
             cols: [
@@ -123,7 +138,13 @@
                     values: ['大众', '奔驰', '宝马', '奥迪', '吉利']
                 }
             ]
-        });
+        }).change(function () {
+            for (var i in cartypedata) {
+                if (cartypedata[i].value == cartype) {
+                    cartypeid = cartypedata[i].id;
+                }
+            }
+        })
         $("#cartype").picker({
             title: "选择车型",
             cols: [
@@ -132,53 +153,63 @@
                     values: ['英伦', '帝豪', '全球鹰', '沃尔沃', '领克']
                 }
             ]
-        });
-    })
-    // 车类型数据
-    var cartypedata = [
-        {value: '英伦', id: 1, img: '../assets/imgs/caricon.jpg'},
-        {value: '帝豪', id: 2, img: '../assets/imgs/caricon1.jpeg'},
-        {value: '全球鹰', id: 3, img: '../assets/imgs/caricon2.jpeg'},
-        {value: '沃尔沃', id: 4, img: '../assets/imgs/caricon.jpg'},
-        {value: '领克', id: 5, img: '../assets/imgs/caricon2.jpeg'},
-    ];
-    var cartypeid = ''
-
-    // 改变时触发
-    function choosetype(e) {
-        var cartype = $('#cartype').val();
-        $('#choosetype').text(cartype);
-        for (var i in cartypedata) {
-            if (cartypedata[i].value == cartype) {
-                $('#cartypeimg').attr('src', cartypedata[i].img);
-                cartypeid = cartypedata[i].id;
+        }).change(function () {
+            var cartype = $('#cartype').val();
+            $('#choosetype').text(cartype);
+            for (var i in cartypedata) {
+                if (cartypedata[i].value == cartype) {
+                    $('#cartypeimg').attr('src', cartypedata[i].img);
+                }
             }
-        }
-    }
+        })
+        // 底部轮播图
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            observers: true,
+            observeParents: true
+        });
+        // 切换
+        $('#ordercar').click(function () {
+            if ($(this).hasClass('active')) return
+            $('#ordercarbox').animate({width: 'toggle'}, 350);
+            $('#successcarbox').animate({width: 'toggle'}, 350);
+            $(this).addClass('active');
+            $('#successcar').removeClass('active');
+        })
+        $('#successcar').click(function () {
+            if ($(this).hasClass('active')) return
+            $('#successcarbox').animate({width: 'toggle'}, 350);
+            $('#ordercarbox').animate({width: 'toggle'}, 350);
 
-    // 底部轮播图
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-    })
-    $('#ordercar').click(function () {
-        if ($(this).hasClass('active')) return
-        $('#ordercarbox').animate({width: 'toggle'}, 350);
-        $('#successcarbox').animate({width: 'toggle'}, 350);
-        $(this).addClass('active');
-        $('#successcar').removeClass('active');
-    })
-    $('#successcar').click(function () {
-        if ($(this).hasClass('active')) return
-        $('#successcarbox').animate({width: 'toggle'}, 350);
-        $('#ordercarbox').animate({width: 'toggle'}, 350);
-
-        $(this).addClass('active');
-        $('#ordercar').removeClass('active');
-    })
-    $('.game').click(function () {
-        $.modal({text: "此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加", title:'温馨提示', buttons: [
-                { text: "我知道了",className:'gameknow', onClick: function(){ console.log(1)} },
-            ]});
+            $(this).addClass('active');
+            $('#ordercar').removeClass('active');
+        });
+        // 抽奖
+        $('.game').click(function () {
+            $.modal({
+                text: "此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加", title: '温馨提示', buttons: [
+                    {
+                        text: "我知道了", className: 'gameknow', onClick: function () {
+                            console.log(1)
+                        }
+                    },
+                ]
+            });
+        })
+        // 确认提交
+        $('#orderform').click(function () {
+            if (name == '') {
+                $.toast('请输入姓名', 'text')
+            } else if (tel == '') {
+                $.toast('请输入手机号', 'text')
+            } else if (cityvalue == '') {
+                $.toast('请选择城市', 'text')
+            } else if (cartypeid == '') {
+                $.toast('请选择车型', 'text')
+            } else {
+                // TO DO
+            }
+        })
     })
 
 </script>
