@@ -6,13 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>车集市 · 双11购车节（吉利专场）</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="../assets/css/jquery-weui.min.css">
     <link rel="stylesheet" href="../assets/css/swiper.min.css">
     <link rel="stylesheet" href="../assets/css/activity.css">
     <script src="../assets/js/window.js"></script>
+
 </head>
 <body>
 <div id="app">
-    <div class="topimg"><img src="" alt=""></div>
+    <div class="topimg"><img src="../assets/imgs/banner.jpg" alt=""></div>
     <div class="bg bg1">
         <div class="bg dcyl_bg">
             <div class="content">
@@ -27,8 +30,8 @@
                     <li><span class="circle"></span>成功购车者，通过车集市上传发票认证后,可有机会获得价值50,000元购车大礼包；</li>
                 </ul>
                 <ul class="tips">
-                    <li>· 本次活动适用于吉利、领克全系车型</li>
-                    <li>· 活动最终解释权归北京星系互动科技有限公司所有</li>
+                    <li> ·本次活动适用于吉利、领克全系车型</li>
+                    <li> ·活动最终解释权归北京星系互动科技有限公司所有</li>
                 </ul>
             </div>
         </div>
@@ -46,30 +49,136 @@
         <div class="gamebtn"></div>
     </div>
     <div class="form_tab">
-        <span class="active">我要订车</span>
-        <span>成功提车</span>
+        <span class="active" id="ordercar">我要订车</span>
+        <span id="successcar">成功提车</span>
     </div>
-    <form class="form">
+    <form class="form" id="ordercarbox">
         <div class="inputbox"><label for="name">姓名</label><input type="text" placeholder="" id="name"></div>
         <div class="inputbox"><label for="name">手机号</label><input type="number" placeholder="" id="tel"></div>
-        <div class="citybox"><select name="" id=""></select></div>
-        <div class="inputbox arrow"><label for="name">车型</label>
-            <select name="select" id="select">
-                <option value="1">奧托</option>
-                <option value="2">奧托111</option>
-            </select>
+        <div class="inputbox arrow citybox">
+            <label for="city-picker">所在省市</label>
+            <input type="text" id='city-picker' value=""/>
+        </div>
+        <div class="inputbox arrow">
+            <label for="name">车型</label>
+            <input type="text" id="car"/>
         </div>
         <div class="inputbox"><label for="name">备注</label><input type="text" placeholder="" id="remark"></div>
         <div class="formbtn">确认提交</div>
     </form>
+    <form class="form" id="successcarbox">
+        <div class="fapiao">
+            <div class="plus">+</div>
+            <div>上传发票</div>
+            <input type="file">
+        </div>
+        <div class="formbtn">确认提交</div>
+    </form>
+
+    <div class="agreement">点击确认提交、上传发票 即视为同意《个人信息保护声明》您的个人资料将会提交至吉利厂商的授权经销商或车集市客服与您进一步沟通购车事宜。</div>
+    <div class="bottom">
+        <div class="jmct_title"><img src="../assets/imgs/jmct_title.png" alt=""></div>
+        <div class="carname">
+            <div class="nameleft">
+                <div class="ntop">吉利</div>
+                <div class="nbottom" id="choosetype">领克</div>
+            </div>
+            <div class="nameright ">
+                <div class="imgright"><img src="../assets/imgs/caricon2.jpeg" alt="" id="cartypeimg"></div>
+                <div class="arrow"><input type="text" id="cartype" value="领克" onChange="choosetype()"/></div>
+            </div>
+        </div>
+        <div class="swiper-container carimgs">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="../assets/imgs/c1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="../assets/imgs/c2.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="../assets/imgs/c3.jpg" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-<script src="../assets/js/jquery-1.12.4.min.js"></script>
-<script src="../assets/js/swiper.jquery.min.js"></script>
-<script src="../assets/js/city.js"></script>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script>
+<!--<script src="../assets/js/city.js"></script>-->
 <script type="text/javascript">
+
     $(document).ready(function () {
-        console.log(arr)
+        // 省市初始化
+        $("#city-picker").cityPicker({
+            showDistrict: false,
+            title: '选择省市'
+        });
+
+        $("#car").picker({
+            title: "请选择车型",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['大众', '奔驰', '宝马', '奥迪', '吉利']
+                }
+            ]
+        });
+        $("#cartype").picker({
+            title: "选择车型",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['英伦', '帝豪', '全球鹰', '沃尔沃', '领克']
+                }
+            ]
+        });
     })
+    // 车类型数据
+    var cartypedata = [
+        {value: '英伦', id: 1, img: '../assets/imgs/caricon.jpg'},
+        {value: '帝豪', id: 2, img: '../assets/imgs/caricon1.jpeg'},
+        {value: '全球鹰', id: 3, img: '../assets/imgs/caricon2.jpeg'},
+        {value: '沃尔沃', id: 4, img: '../assets/imgs/caricon.jpg'},
+        {value: '领克', id: 5, img: '../assets/imgs/caricon2.jpeg'},
+    ];
+    var cartypeid = ''
+
+    // 改变时触发
+    function choosetype(e) {
+        var cartype = $('#cartype').val();
+        $('#choosetype').text(cartype);
+        for (var i in cartypedata) {
+            if (cartypedata[i].value == cartype) {
+                $('#cartypeimg').attr('src', cartypedata[i].img);
+                cartypeid = cartypedata[i].id;
+            }
+        }
+    }
+
+    // 底部轮播图
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+    })
+    $('#ordercar').click(function () {
+        if ($(this).hasClass('active')) return
+        $('#ordercarbox').animate({width: 'toggle'}, 350);
+        $('#successcarbox').animate({width: 'toggle'}, 350);
+        $(this).addClass('active');
+        $('#successcar').removeClass('active');
+    })
+    $('#successcar').click(function () {
+        if ($(this).hasClass('active')) return
+        $('#successcarbox').animate({width: 'toggle'}, 350);
+        $('#ordercarbox').animate({width: 'toggle'}, 350);
+
+        $(this).addClass('active');
+        $('#ordercar').removeClass('active');
+    })
+    $('.game').click(function () {
+        $.modal({text: "此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加", title:'温馨提示', buttons: [
+                { text: "我知道了",className:'gameknow', onClick: function(){ console.log(1)} },
+            ]});
+    })
+
 </script>
