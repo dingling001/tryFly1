@@ -136,7 +136,7 @@
                     value: '全球鹰',
                     id: 3,
                     img: '../assets/imgs/caricon2.jpeg',
-                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                    lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
                 },
                 {
                     value: '新远景',
@@ -148,7 +148,7 @@
                     value: '博越PRO',
                     id: 5,
                     img: '../assets/imgs/caricon2.jpeg',
-                    lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                    lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
                 },
             ],
             [
@@ -182,7 +182,8 @@
                     img: '../assets/imgs/caricon2.jpeg',
                     lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
                 },
-            ]];
+            ]
+        ];
         var carArr = [
             {name: '吉利', list: ['全新金刚', '新帝豪三厢', '全球鹰', '新远景', '博越PRO']},
             {name: '领克', list: ['金刚', '帝豪三厢', '全球鹰', '远景', '博越']}
@@ -229,12 +230,14 @@
             ]
         }).change(function () {
             var cartype = $('#cartype').val();
+            html='';
             for (var i in cartypedata[0]) {
                 if (cartypedata[0][i].value == cartype) {
                     $('#cartypeimg').attr('src', cartypedata[0][i].img);
                     for (var x in cartypedata[0][i].lubo) {
                         html += `<div class="swiper-slide"><img src="${cartypedata[0][i].lubo[x]}" alt=""></div>`
                     }
+                    console.log(html)
                     $('#lubo').html(html)
                 }
             }
@@ -250,6 +253,7 @@
             ]
         }).change(function () {
             var cartype1 = $('#cartype1').val();
+            html1='';
             for (var j in cartypedata[1]) {
                 if (cartypedata[1][j].value == cartype1) {
                     $('#cartypeimg1').attr('src', cartypedata[1][j].img);
@@ -273,12 +277,12 @@
             $('#successcarbox').animate({width: 'toggle'}, 350);
             $(this).addClass('active');
             $('#successcar').removeClass('active');
+
         })
         $('#successcar').click(function () {
             if ($(this).hasClass('active')) return
             $('#successcarbox').animate({width: 'toggle'}, 350);
             $('#ordercarbox').animate({width: 'toggle'}, 350);
-
             $(this).addClass('active');
             $('#ordercar').removeClass('active');
         });
@@ -315,6 +319,9 @@
             $('#choosetype').removeClass('ntop');
             $('.car1').animate({width: 'toggle'}, '0').hide();
             $('.car').animate({width: 'toggle'}, 'atuo').show();
+            html += `<div class="swiper-slide"><img src="${cartypedata[0][0].lubo[0]}" alt=""></div>`
+            $('#lubo').html(html)
+
         });
         $('#choosetype').click(function () {
             if ($(this).hasClass('ntop')) return;
@@ -322,6 +329,8 @@
             $('#jili').removeClass('ntop');
             $('.car').animate({width: 'toggle'}, '0').hide();
             $('.car1').animate({width: 'toggle'}, 'atuo').show();
+            html1 += `<div class="swiper-slide"><img src="${cartypedata[1][0].lubo[0]}" alt=""></div>`
+            $('#lubo').html(html1)
         });
     })
 </script>

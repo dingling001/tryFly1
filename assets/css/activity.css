@@ -508,7 +508,9 @@ input[type='text'], input[type='number'] {
     border-radius: 10px;
     margin: .6rem auto;
 }
-
+.carimgs .swiper-slide{
+    transition: ease-in-out .2s;
+}
 .swiper-pagination-bullet {
     opacity: .5;
     width: 5px;
