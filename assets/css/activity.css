@@ -157,8 +157,8 @@ ins, a {
 
 .content {
     padding: 1.6rem 0.54rem .54rem .54rem;
-    min-height: 6.45rem;
-
+    min-height: 6rem;
+    overflow: hidden;
 }
 
 .active_time {
@@ -190,7 +190,7 @@ ins, a {
 .active_content li {
     line-height: .36rem;
     color: #1C222D;
-    font-size: 13px;
+    font-size: .26rem;
     padding: .1rem .1rem 0 .2rem;
     position: relative;
     text-align: justify;
@@ -208,7 +208,7 @@ ins, a {
 
 .active_content .price {
     font-weight: bold;
-    font-size: 15px;
+    font-size: .3rem;
     color: #AB23AC;
     font-style: italic;
 }
@@ -221,6 +221,12 @@ ins, a {
     margin: .22rem auto 0 auto;
     border-radius: 3px;
     padding: .18rem 0.1rem;
+    /*max-height: .88rem;*/
+}
+
+.tips li {
+    text-align: justify;
+
 }
 
 .bg2 {
@@ -324,7 +330,7 @@ input[type='text'], input[type='number'] {
 }
 
 .form .inputbox {
-    width: 5.57rem;
+    width: 6.48rem;
     margin: 0 auto .3rem auto;
     font-size: 15px;
     background-color: rgba(255, 255, 255, .1);
@@ -347,21 +353,40 @@ input[type='text'], input[type='number'] {
 .inputbox input {
     padding: 0 .25rem;
     flex: 1;
-    color: rgba(255, 255, 255, .5);
+    /*color: rgba(255, 255, 255, .5);*/
+    color: #fff;
+}
+
+.inputbox textarea {
+    padding: 0 .25rem;
+    flex: 1;
+    /*color: rgba(255, 255, 255, .5);*/
+    color: #fff;
+    resize: horizontal;
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-size: 14px;
 }
 
 .arrow {
     background-size: auto 5px;
     background-repeat: no-repeat;
     background-image: url("../imgs/form_arrow.png");
-    background-position: 5rem center;
+    background-position: 6.1rem center;
 }
 
 .arrow select {
-    color: rgba(255, 255, 255, .5);
-    text-align: center;
+    /*color: rgba(255, 255, 255, .5);*/
+    color: #fff;
+    /*text-align: center;*/
     flex: 1;
-    padding: 0 .25rem;
+    padding-left: 27%;
+    /*text-align-last: center;*/
+    /*-moz-text-align-last: center;*/
+    /*-webkit-text-align-last: center;*/
+
 }
 
 .arrow select option {
@@ -411,8 +436,35 @@ input[type='text'], input[type='number'] {
     text-align: center;
 }
 
+.citybox {
+    display: flex;
+    align-items: center;
+    margin: 0 auto .3rem auto;
+    justify-content: center;
+}
+
+.citybox .inputbox {
+    margin: 0;
+    width: 3.11rem;
+}
+
+.citybox .inputbox:first-child {
+    margin: 0 .26rem 0 0;
+
+}
+
 .citybox label {
-    width: 1.15rem;
+    width: .5rem;
+}
+
+.citybox select {
+    padding: 0;
+    font-size: 14px;
+    padding-left: 5%;
+}
+
+.citybox .arrow {
+    background-position: 2.71rem center;
 }
 
 .agreement {
@@ -448,7 +500,8 @@ input[type='text'], input[type='number'] {
     width: 2.17rem;
     font-size: 14px;
     font-weight: bold;
-    color: rgba(255, 255, 255, .83);
+    /*color: rgba(255, 255, 255, .83);*/
+    color: #fff;
     line-height: .3rem;
     text-align: center;
     flex-shrink: 0;
@@ -457,12 +510,14 @@ input[type='text'], input[type='number'] {
     margin-right: .2rem;
 }
 
-.nameleft .ntop {
-    background: linear-gradient(180deg, rgba(212, 59, 155, .4), rgba(131, 12, 189, .4));
-}
-
 .nameleft .nbottom {
     line-height: .64rem;
+    color: rgba(255, 255, 255, .5);
+}
+
+.nameleft .ntop {
+    background: linear-gradient(180deg, rgba(212, 59, 155, .4), rgba(131, 12, 189, .4));
+    color: #fff;
 }
 
 
@@ -490,7 +545,7 @@ input[type='text'], input[type='number'] {
 }
 
 .nameright .arrow {
-    background-position: 2.2rem center;
+    background-position: 2.1rem center;
     flex: 1;
     text-align: center;
     padding-right: .32rem;
@@ -502,15 +557,23 @@ input[type='text'], input[type='number'] {
     text-align: center;
 }
 
+.nameright .arrow select {
+    line-height: .6rem;
+    color: #fff;
+    text-align: center;
+}
+
 .carimgs {
     width: 6.48rem;
     height: 3.9rem;
     border-radius: 10px;
     margin: .6rem auto;
 }
-.carimgs .swiper-slide{
+
+.carimgs .swiper-slide {
     transition: ease-in-out .2s;
 }
+
 .swiper-pagination-bullet {
     opacity: .5;
     width: 5px;
@@ -539,7 +602,12 @@ input[type='text'], input[type='number'] {
     width: 6.48rem;
     height: 2.88rem;
     margin: 0 auto;
-    transition: ease-in-out .3s;
+    transition: linear .3s;
+    overflow: hidden;
+}
+
+.fapiao img {
+    width: 100%;
 }
 
 .plus {
@@ -573,4 +641,8 @@ input[type='text'], input[type='number'] {
     border-radius: .44rem;
     color: #fff;
     font-size: 17px;
+}
+
+[v-cloak] {
+    display: none !important;
 }
