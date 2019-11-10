@@ -145,6 +145,11 @@
         </div>
         <div class="weui-dialog__ft"><span class="weui-dialog__btn gameknow" @click="closeMold">我知道了</span></div>
     </div>
+    <div class="weui-mask_transparent" v-if="mask"></div>
+    <div class="weui-toast weui_loading_toast weui-toast--visible" v-if="loadShow">
+        <div class="weui_loading"><i class="weui-loading weui-icon_toast"></i></div>
+        <p class="weui-toast_content">{{text||'加载中…'}}</p>
+    </div>
 </div>
 </body>
 </html>
@@ -282,9 +287,10 @@
             canPrize: false,
             title: '温馨提示',//抽奖头部内容
             tips: '',// 抽奖提示内容
-            email: 'info@singsdigital.cn'//中奖发的邮箱
-
-
+            email: 'info@singsdigital.cn',//中奖发的邮箱
+            loadShow: false,
+            mask: false,
+            text: '加载中...'
         },
         created() {
             this.$nextTick(() => {
@@ -372,7 +378,7 @@
             },
             // 确认提交
             orderform() {
-                var telReg = /^1\d{10}$/gi
+                var telReg = /^1\d{10}$/gi;
                 if (this.name == '') {
                     this.Toast('请输入姓名')
                 } else if (!telReg.test(this.tel)) {
@@ -460,6 +466,26 @@
                         document.body.removeChild(m)
                     }, d * 1000);
                 }, duration);
+            },
+            //展示loading效果
+            showLoading(mask, text) {
+                // 参数说明
+                // mask:出现loading 是否可以进行其他操作 默认值 fasle
+                // text:loading图标下的字样 默认加载中……
+                // 其他 超过10s自动关闭laoding
+                this.mask = mask;
+                this.text = text;
+                this.loadShow = true;
+                var t = setTimeout(() => {
+                    this.mask = false;
+                    this.loadShow = false;
+                    clearTimeout(t)
+                }, 10000)
+            },
+            //移除loading效果
+            completeLoading() {
+                this.mask = false;
+                this.loadShow = false;
             }
         }
     })
