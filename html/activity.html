@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="game">
+    <div class="game" @click="showtips">
         <img src="../assets/imgs/tigger.png" alt="">
         <div class="gamebtn"></div>
     </div>
@@ -133,6 +133,16 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
+    </div>
+    <div class="weui-mask weui-mask--visible" v-if="show_box"></div>
+    <div class="weui-dialog weui-dialog--visible" v-if="show_box">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{title}}</strong></div>
+        <div class="weui-dialog__bd" v-if="!canPrize">{{tips}}</div>
+        <div class="weui-dialog__bd" v-else>
+            请将此兑奖码发送至邮箱
+            <div><span class="email">{{email}}</span>进行兑奖查询</div>
+        </div>
+        <div class="weui-dialog__ft"><span class="weui-dialog__btn gameknow" @click="closeMold">我知道了</span></div>
     </div>
 </div>
 </body>
@@ -267,19 +277,52 @@
             sindex: 0,
             swiperitem: {},
             fapiao: '',
-            mySwiper: null
+            mySwiper: null,
+            show_box: false,//抽奖弹窗
+            canPrize: false,
+            title: '温馨提示',//抽奖头部内容
+            tips: '',// 抽奖提示内容
+            email: 'info@singsdigital.cn'//中奖发的邮箱
+
+
         },
         created() {
             // console.log(this.cartypedata)
             // console.log(this.city_data)
             // console.log(this.cartypedata)
             this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0];
-            this.pro = this.city_data[0];
-            this.cit = this.pro.sub[0];
-            this.cartype_val = this.cartType[0]
             // console.log(this.pro)
             // console.log(this.cartype_val);
             // console.log(this.cartype_val)
+            var provce = '',//默认省
+                city = '',//默认市
+                cartype_val = '',//默认车型
+                canPrize = true, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
+                email = 'info@singsdigital.cn',//默认邮箱
+                title = '温馨提示';//中奖码 默认为温馨提示
+            for (var i in this.city_data) {
+                if (provce == this.city_data[i].name) {
+                    this.pro = this.city_data[i];
+                    for (var j in  this.city_data[i].sub) {
+                        if (city == this.city_data[i].sub[j].name) {
+                            this.cit = this.city_data[i].sub[j].sub[i];
+                        }
+                    }
+                } else {
+                    this.pro = this.city_data[0];
+                    this.cit = this.city_data[0].sub[0];
+                }
+            }
+            for (var k in this.cartType) {
+                if (cartype_val == this.cartType[k].name) {
+                    this.cartype_val = this.cartType[k]
+                } else {
+                    this.cartype_val = this.cartType[0]
+                }
+            }
+            this.canPrize = canPrize;//
+            this.email = email;
+            this.title = title;
         },
 
         watch: {
@@ -369,7 +412,19 @@
                 }
                 return getUrl;
             },
-
+            // 抽奖
+            showtips() {
+                this.show_box = true;
+                if (this.canPrize) {
+                } else {
+                    this.tips = '此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加'
+                }
+            },
+            // 关闭窗口
+            closeMold() {
+                this.show_box = false;
+                //  TODO
+            },
             // 弹窗
             Toast(msg, duration) {
                 duration = isNaN(duration) ? 3000 : duration;

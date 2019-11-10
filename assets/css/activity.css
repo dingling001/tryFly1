@@ -290,9 +290,9 @@ ins, a {
     background-color: #f2f2f2;
 }
 
-/*.form {*/
-/*transition: ease-in-out .3s;*/
-/*}*/
+.form {
+    transition: ease-in-out .2s;
+}
 
 #successcarbox {
     display: none;
@@ -327,6 +327,7 @@ input[type='text'], input[type='number'] {
 
 .form_tab span.active {
     background: linear-gradient(180deg, rgba(212, 59, 155, .4), rgba(131, 12, 189, .4));
+    transition: ease-in-out .3s;
 }
 
 .form .inputbox {
@@ -602,7 +603,6 @@ input[type='text'], input[type='number'] {
     width: 6.48rem;
     height: 2.88rem;
     margin: 0 auto;
-    transition: linear .3s;
     overflow: hidden;
 }
 
@@ -645,4 +645,17 @@ input[type='text'], input[type='number'] {
 
 [v-cloak] {
     display: none !important;
+}
+
+.weui-dialog__bd{
+    color: #8E97A4;
+    font-size: 12px;
+}
+.weui-dialog__btn:active{
+    background: #7400C3;
+    opacity: .7;
+}
+.email{
+    color: #7400C3;
+    font-size: 13px;
 }
