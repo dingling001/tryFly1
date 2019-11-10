@@ -98,15 +98,15 @@
         <div class="jmct_title"><img src="../assets/imgs/jmct_title.png" alt=""></div>
         <div class="carname">
             <div class="nameleft">
-                <div class="nbottom " :class="{'ntop':sindex==0}" @click="changeImg(0)">吉利</div>
-                <div class="nbottom" :class="{'ntop':sindex==1}" @click="changeImg(1)">全新金刚</div>
+                <div class="nbottom " :class="{'ntop':sindex==index}" @click="changeImg(index)" v-for="(item,index) in activeInfo.cartypedata ">{{item.typename}}</div>
+<!--                <div class="nbottom" :class="{'ntop':sindex==1}" @click="changeImg(1)">全新金刚</div>-->
             </div>
             <div class="nameright">
                 <div class="imgright"><img :src="swiperitem.img" alt=""></div>
                 <div class="arrow">
                     <!--<input type="text" id="cartype" value="全新金刚"/>-->
                     <select @change="changeswiper" v-model="swiperitem">
-                        <option :value="c" v-for="(c,index) in activeInfo.cartypedata[sindex]">{{c.value}}</option>
+                        <option :value="c" v-for="(c,index) in activeInfo.cartypedata[sindex].list">{{c.value}}</option>
                     </select>
                 </div>
             </div>
@@ -174,74 +174,84 @@
                 end_date: "12月30日",
                 price: '9999',
                 cartypedata: [
-                    [
-                        {
-                            value: '全新金刚',
-                            id: 1,
-                            img: '../assets/imgs/caricon.jpg',
-                            lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '新帝豪三厢',
-                            id: 2,
-                            img: '../assets/imgs/caricon1.jpeg',
-                            lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
-                        },
-                        {
-                            value: '全球鹰',
-                            id: 3,
-                            img: '../assets/imgs/caricon2.jpeg',
-                            lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '新远景',
-                            id: 4,
-                            img: '../assets/imgs/caricon.jpg',
-                            lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '博越PRO',
-                            id: 5,
-                            img: '../assets/imgs/caricon2.jpeg',
-                            lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                    ],
-                    [
-                        {
-                            value: '金刚',
-                            id: 11,
-                            img: '../assets/imgs/caricon1.jpeg',
-                            lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '帝豪三厢',
-                            id: 22,
-                            img: '../assets/imgs/caricon2.jpeg',
-                            lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '全球鹰',
-                            id: 33,
-                            img: '../assets/imgs/caricon.jpg',
-                            lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '远景',
-                            id: 44,
-                            img: '../assets/imgs/caricon1.jpeg',
-                            lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                        {
-                            value: '博越',
-                            id: 55,
-                            img: '../assets/imgs/caricon2.jpeg',
-                            lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
-                        },
-                    ]
+                    {
+                        typename: '吉利',
+                        list: [
+                            {
+                                value: '全新金刚',
+                                id: 1,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新帝豪三厢',
+                                id: 2,
+                                img: '../assets/imgs/caricon1.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
+                            },
+                            {
+                                value: '全球鹰',
+                                id: 3,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新远景',
+                                id: 4,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '博越PRO',
+                                id: 5,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                        ],
+                    },
+                    {
+                        typename: '领克',
+                        list: [
+                            {
+                                value: '全新金刚',
+                                id: 1,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新帝豪三厢',
+                                id: 2,
+                                img: '../assets/imgs/caricon1.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
+                            },
+                            {
+                                value: '全球鹰',
+                                id: 3,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新远景',
+                                id: 4,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '博越PRO',
+                                id: 5,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                        ],
+                    }
                 ],
             },
-            cartType: ['全新金刚', '新帝豪三厢', '全球鹰', '新远景', '博越PRO'],
+            cartType: [{name: '全新金刚', id: 1}, {name: '新帝豪三厢', id: 2}, {name: '全球鹰', id: 3}, {
+                name: '新远景',
+                id: 4
+            }, {name: '博越PRO', id: 5}],
             cartype_val: '',
+            cartype_id: '',
             name: '',
             tel: '',
             pro: '',
@@ -255,25 +265,25 @@
             sindex: 0,
             swiperitem: {},
             fapiao: '',
-            mySwiper:null
+            mySwiper: null
         },
         created() {
             // console.log(this.cartypedata)
             // console.log(this.city_data)
             // console.log(this.cartypedata)
-            this.swiperitem = this.activeInfo.cartypedata[this.sindex][0]
+            this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0]
         },
 
         watch: {
             // 监听轮播图变化
             'swiperitem': {
                 handler(val) {
-                   this.mySwiper = new Swiper('.swiper-container', {
+                    this.mySwiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
-                       observer: true, // 监听动态加载 dom 结构
-                       observeParents: true,
-                       observeSlideChildren: true,
-                   });
+                        observer: true, // 监听动态加载 dom 结构
+                        observeParents: true,
+                        observeSlideChildren: true,
+                    });
                 },
                 deep: true
             }
@@ -294,7 +304,9 @@
             },
             // 车型变化事件
             car_change() {
-                console.log(this.cartype_val)
+                this.cartype_id = this.cartype_val.id;
+                console.log(this.cartype_id)
+
             },
             // 确认提交
             orderform() {
@@ -307,7 +319,7 @@
                     this.Toast('请选择省份')
                 } else if (this.cit == '') {
                     this.Toast('请选择城市')
-                } else if (this.cartype_val == '') {
+                } else if (this.cartype_id == '') {
                     this.Toast('请选择车型')
                 } else {
                     // TODO
@@ -317,7 +329,7 @@
             // 切换车类
             changeImg(index) {
                 this.sindex = index;
-                this.swiperitem = this.activeInfo.cartypedata[this.sindex][index]
+                this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[index]
             },
             // 切换轮播图
             changeswiper() {
@@ -340,11 +352,11 @@
             getObjectURL(file) {
                 console.log(file)
                 var getUrl = null;
-                if(window.createObjectURL != undefined) { // basic
+                if (window.createObjectURL != undefined) { // basic
                     getUrl = window.createObjectURL(file);
-                } else if(window.URL != undefined) { // mozilla(firefox)
+                } else if (window.URL != undefined) { // mozilla(firefox)
                     getUrl = window.URL.createObjectURL(file);
-                } else if(window.webkitURL != undefined) { // webkit or chrome
+                } else if (window.webkitURL != undefined) { // webkit or chrome
                     getUrl = window.webkitURL.createObjectURL(file);
                 }
                 return getUrl;
