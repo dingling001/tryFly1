@@ -73,7 +73,7 @@
         <div class="inputbox arrow">
             <label>车型</label>
             <select v-model="cartype_val" @change="car_change">
-                <option :value="item" v-for="item in cartType">{{item}}</option>
+                <option :value="item" v-for="item in cartType">{{item.name}}</option>
             </select>
             <!--<input type="text" id="car"/>-->
         </div>
@@ -98,8 +98,10 @@
         <div class="jmct_title"><img src="../assets/imgs/jmct_title.png" alt=""></div>
         <div class="carname">
             <div class="nameleft">
-                <div class="nbottom " :class="{'ntop':sindex==index}" @click="changeImg(index)" v-for="(item,index) in activeInfo.cartypedata ">{{item.typename}}</div>
-<!--                <div class="nbottom" :class="{'ntop':sindex==1}" @click="changeImg(1)">全新金刚</div>-->
+                <div class="nbottom " :class="{'ntop':sindex==index}" @click="changeImg(index)"
+                     v-for="(item,index) in activeInfo.cartypedata ">{{item.typename}}
+                </div>
+                <!--                <div class="nbottom" :class="{'ntop':sindex==1}" @click="changeImg(1)">全新金刚</div>-->
             </div>
             <div class="nameright">
                 <div class="imgright"><img :src="swiperitem.img" alt=""></div>
