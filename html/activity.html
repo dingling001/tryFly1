@@ -60,20 +60,20 @@
             <div class="inputbox arrow ">
                 <label>省</label>
                 <select name="" v-model="pro" @change="prov_change">
-                    <option :value="item" v-for="(item,index) in city_data">{{item.name}}</option>
+                    <option :value="item.name" v-for="(item,index) in city_data">{{item.name}}</option>
                 </select>
             </div>
             <div class="inputbox arrow ">
                 <label>市</label>
                 <select name="" v-model="cit" @change="city_change">
-                    <option :value="i" v-for="(i,iindex) in pro.sub">{{i.name}}</option>
+                    <option :value="i.name" v-for="(i,iindex) in citylist">{{i.name}}</option>
                 </select>
             </div>
         </div>
         <div class="inputbox arrow">
             <label>车型</label>
-            <select v-model="cartype_val" @change="car_change">
-                <option :value="item" v-for="item in cartType">{{item.name}}</option>
+            <select v-model="cartype_id" @change="car_change">
+                <option :value="item.id" v-for="item in cartType">{{item.name}}</option>
             </select>
             <!--<input type="text" id="car"/>-->
         </div>
@@ -270,8 +270,7 @@
             cit: '',
             remark: '',
             citylist: [],
-            cartype1: '',
-            cartype: '全新金刚',
+            cartype: '',
             tabindex: 0,
             city_data: cityData,
             sindex: 0,
@@ -294,33 +293,36 @@
             // console.log(this.pro)
             // console.log(this.cartype_val);
             // console.log(this.cartype_val)
-            var provce = '',//默认省
-                city = '',//默认市
-                cartype_val = '',//默认车型
+            var provce = '陕西',//默认省 为空默认第一个
+                city = '延安',//默认市 为空默认第一个
+                cartype_val = '新帝豪三厢',//默认车型 为空默认第一个
                 canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
                 email = 'info@singsdigital.cn',//默认邮箱
                 title = '温馨提示';//中奖码 默认为温馨提示
             for (var i in this.city_data) {
-                if (provce == this.city_data[i].name) {
-                    this.pro = this.city_data[i];
-                    for (var j in  this.city_data[i].sub) {
+                for (var j in  this.city_data[i].sub) {
+                    if (provce == this.city_data[i].name) {
                         if (city == this.city_data[i].sub[j].name) {
-                            this.cit = this.city_data[i].sub[j].sub[i];
+                            this.pro = provce;
+                            this.cit = city;
+                            this.citylist = this.city_data[i].sub
                         }
+                    } else if (provce == '' && city == '') {
+                        this.pro = this.city_data[0].name;
+                        this.citylist = this.city_data[0].sub;
+                        this.cit = this.city_data[0].sub[0].name;
                     }
-                } else {
-                    this.pro = this.city_data[0];
-                    this.cit = this.city_data[0].sub[0];
                 }
             }
+
             for (var k in this.cartType) {
                 if (cartype_val == this.cartType[k].name) {
-                    this.cartype_val = this.cartType[k]
+                    this.cartype_id = this.cartType[k].id
                 } else {
-                    this.cartype_val = this.cartType[0]
+                    this.cartype_id = this.cartType[0].id
                 }
             }
-            this.canPrize = canPrize;//
+            this.canPrize = canPrize;
             this.email = email;
             this.title = title;
         },
@@ -346,8 +348,12 @@
             },
             // 省变化事件
             prov_change(val) {
-                // console.log(this.pro)
-                // this.citylist = this.pro.sub;
+                console.log(this.pro)
+                for (var i in this.city_data) {
+                    if (this.pro == this.city_data[i].name) {
+                        this.citylist = this.city_data[i].sub;
+                    }
+                }
             },
             // 市变化事件
             city_change() {
