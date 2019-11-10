@@ -72,8 +72,8 @@
         </div>
         <div class="inputbox arrow">
             <label>车型</label>
-            <select v-model="cartype_id" @change="car_change">
-                <option :value="item.id" v-for="item in cartType">{{item.name}}</option>
+            <select v-model="cartype_val" @change="car_change">
+                <option :value="item.name" v-for="item in cartType">{{item.name}}</option>
             </select>
             <!--<input type="text" id="car"/>-->
         </div>
@@ -262,8 +262,8 @@
                 name: '新远景',
                 id: 4
             }, {name: '博越PRO', id: 5}],
-            cartype_val: '',
             cartype_id: '',
+            cartype_val: '',
             name: '',
             tel: '',
             pro: '',
@@ -286,45 +286,43 @@
 
         },
         created() {
-            // console.log(this.cartypedata)
-            // console.log(this.city_data)
-            // console.log(this.cartypedata)
-            this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0];
-            // console.log(this.pro)
-            // console.log(this.cartype_val);
-            // console.log(this.cartype_val)
-            var provce = '陕西',//默认省 为空默认第一个
-                city = '延安',//默认市 为空默认第一个
-                cartype_val = '新帝豪三厢',//默认车型 为空默认第一个
-                canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
-                email = 'info@singsdigital.cn',//默认邮箱
-                title = '温馨提示';//中奖码 默认为温馨提示
-            for (var i in this.city_data) {
-                for (var j in  this.city_data[i].sub) {
-                    if (provce == this.city_data[i].name) {
-                        if (city == this.city_data[i].sub[j].name) {
-                            this.pro = provce;
-                            this.cit = city;
-                            this.citylist = this.city_data[i].sub
+            this.$nextTick(() => {
+                // console.log(this.cartypedata)
+                // console.log(this.city_data)
+                // console.log(this.cartypedata)
+                this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0];
+                // console.log(this.pro)
+                // console.log(this.cartype_val);
+                // console.log(this.cartype_val)
+                var provce = '陕西',//默认省 为空默认第一个
+                    city = '延安',//默认市 为空默认第一个
+                    cartype_val = '新远景',//默认车型 为空默认第一个
+                    canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
+                    email = 'info@singsdigital.cn',//默认邮箱
+                    title = '温馨提示';//中奖码 默认为温馨提示
+
+                for (var i in this.city_data) {
+                    for (var j in  this.city_data[i].sub) {
+                        if (provce == this.city_data[i].name) {
+                            if (city == this.city_data[i].sub[j].name) {
+                                // this.pro = provce;
+                                // this.cit = city;
+                                this.citylist = this.city_data[i].sub
+                            }
+                        } else if (provce == '' && city == '') {
+                            // this.pro = this.city_data[0].name;
+                            this.citylist = this.city_data[0].sub;
+                            // this.cit = this.city_data[0].sub[0].name;
                         }
-                    } else if (provce == '' && city == '') {
-                        this.pro = this.city_data[0].name;
-                        this.citylist = this.city_data[0].sub;
-                        this.cit = this.city_data[0].sub[0].name;
                     }
                 }
-            }
-
-            for (var k in this.cartType) {
-                if (cartype_val == this.cartType[k].name) {
-                    this.cartype_id = this.cartType[k].id
-                } else {
-                    this.cartype_id = this.cartType[0].id
-                }
-            }
-            this.canPrize = canPrize;
-            this.email = email;
-            this.title = title;
+                this.pro = provce;
+                this.cit = city;
+                this.cartype_val = cartype_val;
+                this.canPrize = canPrize;
+                this.email = email;
+                this.title = title;
+            });
         },
 
         watch: {
@@ -354,6 +352,7 @@
                         this.citylist = this.city_data[i].sub;
                     }
                 }
+                this.cit = this.citylist[0].name
             },
             // 市变化事件
             city_change() {
@@ -361,9 +360,13 @@
             },
             // 车型变化事件
             car_change() {
-                this.cartype_id = this.cartype_val.id;
+                // this.cartype_id = this.cartype_val.id;
+                for (let k in this.cartType) {
+                    if (this.cartype_val == this.cartType[k].name) {
+                        this.cartype_id = this.cartType[k].id
+                    }
+                }
                 console.log(this.cartype_id)
-
             },
             // 确认提交
             orderform() {
