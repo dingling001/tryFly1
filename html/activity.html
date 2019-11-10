@@ -436,14 +436,13 @@
                 this.show_box = false;
                 //  TODO
             },
-            // 失去焦点导致问题
+            // ios底部select失去焦点导致页面被顶起，
             selectBlurF() {
-                // var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                // document.body.scrollTop = document.documentElement.scrollTop = 0;
+                //做100毫秒的延迟处理保证 scrollHeight的值是准确的
                 setTimeout(function () {
-                    //         //设置滚动条到最底部
+                    //  失去焦点后  //设置滚动条到最底部
                     document.body.scrollTop = document.documentElement.scrollTop = document.body.scrollHeight
-                    console.log(document.body.scrollHeight)
+                    // console.log(document.body.scrollHeight)
                 }, 100);
             },
             // 弹窗
