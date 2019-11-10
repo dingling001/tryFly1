@@ -471,12 +471,14 @@ input[type='text'], input[type='number'] {
 .agreement {
     font-size: 11px;
     padding: .55rem 0;
-    width: 5.92rem;
+    width: 6.48rem;
     margin: 0 auto;
     color: rgba(255, 255, 255, .6);
     line-height: .36rem;
 }
-
+.agreement a{
+    color: #fff;
+}
 .bottom {
     height: 8.53rem;
     background: linear-gradient(90deg, #5000C3, #7400C3)
