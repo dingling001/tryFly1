@@ -66,7 +66,7 @@
             <div class="inputbox arrow ">
                 <label>市</label>
                 <select name="" v-model="cit" @change="city_change">
-                    <option :value="i" v-for="(i,iindex) in citylist">{{i.name}}</option>
+                    <option :value="i" v-for="(i,iindex) in pro.sub">{{i.name}}</option>
                 </select>
             </div>
         </div>
@@ -273,7 +273,13 @@
             // console.log(this.cartypedata)
             // console.log(this.city_data)
             // console.log(this.cartypedata)
-            this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0]
+            this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0];
+            this.pro = this.city_data[0];
+            this.cit = this.pro.sub[0];
+            this.cartype_val = this.cartType[0]
+            // console.log(this.pro)
+            // console.log(this.cartype_val);
+            // console.log(this.cartype_val)
         },
 
         watch: {
@@ -298,7 +304,7 @@
             // 省变化事件
             prov_change(val) {
                 // console.log(this.pro)
-                this.citylist = this.pro.sub;
+                // this.citylist = this.pro.sub;
             },
             // 市变化事件
             city_change() {
