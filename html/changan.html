@@ -128,7 +128,7 @@
             <!--</div>-->
             <!--</div>-->
         </div>
-        <div class="swiper-container carimgs">
+        <div class="swiper-container carimgs" v-if="swiperitem.lubo.length">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="(s,index) in swiperitem.lubo"><img :src="s" alt=""></div>
                 <!--<div class="swiper-slide"><img src="../assets/imgs/c2.jpg" alt=""></div>-->
