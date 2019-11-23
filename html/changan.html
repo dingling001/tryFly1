@@ -46,6 +46,13 @@
             <div class="game" @click="showtips">
                 <img src="../assets/imgs/changan/tigger.png" alt="">
                 <!--<div class="gamebtn"></div>-->
+                <div class="donghua"></div>
+                <!--<div class="donghua delay-1"></div>-->
+                <!--<div class="donghua delay-2"></div>-->
+                <!--<div class="donghua delay-3"></div>-->
+                <!--<div class="donghua delay-4"></div>-->
+                <!--<div class="donghua delay-5"></div>-->
+
             </div>
         </div>
     </div>
@@ -80,6 +87,8 @@
             </div>
             <div class="inputbox"><label>备注</label><input type="text" placeholder="" v-model="remark"/></div>
             <div class="formbtn" @click="orderform">确认提交</div>
+            <div class="formbtn" @click="showcode">查看兑换码</div>
+
         </form>
         <form class="form" v-else>
             <div class="fapiao" v-if="fapiao">
@@ -145,6 +154,17 @@
         <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{title}}</strong></div>
         <div class="weui-dialog__bd" v-if="!canPrize">{{tips}}</div>
         <div class="weui-dialog__bd" v-else>
+            请将此兑奖码发送至邮箱
+            <div><span class="email">{{email}}</span>进行兑奖查询</div>
+        </div>
+        <div class="weui-dialog__ft"><span class="weui-dialog__btn gameknow" @click="closeMold">我知道了</span></div>
+    </div>
+
+    <div class="weui-mask weui-mask--visible" v-if="show_code"></div>
+    <div class="weui-dialog weui-dialog--visible" v-if="show_code">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{codetitle}}</strong></div>
+        <div class="weui-dialog__bd">{{codes}}</div>
+        <div class="weui-dialog__bd">
             请将此兑奖码发送至邮箱
             <div><span class="email">{{email}}</span>进行兑奖查询</div>
         </div>
@@ -296,7 +316,10 @@
             email: 'info@singsdigital.cn',//中奖发的邮箱
             loadShow: false,
             mask: false,
-            text: '加载中...'
+            text: '加载中...',
+            show_code: false,
+            codes: '',
+            codetitle: '温馨提示'
         },
         created() {
             this.$nextTick(() => {
@@ -312,8 +335,9 @@
                     cartype_val = '新远景',//默认车型 为空默认第一个
                     canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
                     email = 'info@singsdigital.cn',//默认邮箱
-                    title = '温馨提示';//中奖码 默认为温馨提示
-
+                    title = '中奖结果',//中奖码 默认为温馨提示
+                    codetitle = '温馨提示',//兑换码头
+                    codes = '';//兑换码
                 for (var i in this.city_data) {
                     for (var j in  this.city_data[i].sub) {
                         if (provce == this.city_data[i].name) {
@@ -335,6 +359,8 @@
                 this.canPrize = canPrize;
                 this.email = email;
                 this.title = title;
+                this.codetitle = codetitle;
+                this.codes = codes;
             });
         },
 
@@ -436,11 +462,19 @@
             },
             // 抽奖
             showtips() {
-                this.show_box = true;
+                var _ = this;
+                setTimeout(function () {
+                    _.show_box = true;
+                }, 1500)
                 if (this.canPrize) {
+
                 } else {
                     this.tips = '此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加'
                 }
+            },
+            // 查看兑换码
+            showcode() {
+                this.show_code = true;
             },
             // 关闭窗口
             closeMold() {

@@ -193,7 +193,7 @@ ins, a {
 
 .active_content li {
     line-height: .36rem;
-    color: rgba(2555,255,255,.7);
+    color: rgba(2555, 255, 255, .7);
     font-size: .26rem;
     padding: .1rem .1rem 0 .2rem;
     position: relative;
@@ -223,7 +223,7 @@ ins, a {
     width: 5.7rem;
     color: #D83B47;
     font-size: .18rem;
-    background:rgba(228,0,17,.15);
+    background: rgba(228, 0, 17, .15);
     margin: .43rem auto 0 auto;
     border-radius: 3px;
     padding: .18rem 0.1rem;
@@ -280,6 +280,59 @@ ins, a {
     position: relative;
 }
 
+.game:before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: -150px;
+    overflow: hidden;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, .2)), color-stop(100%, rgba(255, 255, 255, 0)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
+    -webkit-transform: skewX(-25deg);
+    -moz-transform: skewX(-25deg)
+}
+
+.game:hover:before {
+    left: 150%;
+    transition: left 1s ease 0s;
+}
+
+.donghua {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    margin: 0 auto;
+    animation: mymove 5s infinite;
+    -moz-animation: mymove 5s infinite; /* Firefox */
+    -webkit-animation: mymove 5s infinite; /* Safari and Chrome */
+    -o-animation: mymove 5s infinite; /* Opera */
+}
+
+.delay-1 {
+    animation-delay: .3s;
+}
+
+.delay-2 {
+    animation-delay: .5s;
+}
+
+.delay-3 {
+    animation-delay: .7s;
+}
+
+.delay-4 {
+    animation-delay: 1s;
+}
+
+.delay-5 {
+    animation-delay: 1.3s;
+}
+
 .game img {
     width: 100%;
 }
@@ -300,12 +353,14 @@ ins, a {
     opacity: .1;
     background-color: #f2f2f2;
 }
-.bg3{
+
+.bg3 {
     background-image: url("../imgs/changan/form_bg.jpg");
     padding: 0.2rem 0 0 0;
     background-position: top center;
     height: 12.06rem;
 }
+
 .form {
     transition: ease-in-out .2s;
 }
@@ -336,7 +391,7 @@ input[type='text'], input[type='number'] {
     /*width: 2.04rem;*/
     text-align: center;
     font-size: 15px;
-    color:rgba(255,255,255,.6);
+    color: rgba(255, 255, 255, .6);
     line-height: .64rem;
     /*border-radius: .32rem;*/
 }
@@ -424,8 +479,8 @@ input[type='text'], input[type='number'] {
     width: 6.48rem;
     margin: .3rem auto;
     line-height: .88rem;
-    background: linear-gradient(180deg, rgba(228,0,17,1), rgba(228,0,17,.9));
-    box-shadow: 0px 3px 0px 0px rgba(228,0,17, 0.58);
+    background: linear-gradient(180deg, rgba(228, 0, 17, 1), rgba(228, 0, 17, .9));
+    box-shadow: 0px 3px 0px 0px rgba(228, 0, 17, 0.58);
     border-radius: 10px;
     text-align: center;
     color: #fff;
@@ -512,9 +567,9 @@ input[type='text'], input[type='number'] {
 }
 
 .jmct_title {
-    width:5.79rem;
+    width: 5.79rem;
     margin: 0 auto;
-    padding:0 0 .7rem 0;
+    padding: 0 0 .7rem 0;
 }
 
 .jmct_title img {
@@ -604,8 +659,8 @@ input[type='text'], input[type='number'] {
     height: 3.5rem;
     border-radius: 10px;
     margin: .5rem auto 0 auto;
-    background-color: rgba(0,0,0,1);
-    box-shadow:3px 4px 0px 0px rgba(128,4,13,1);
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 3px 4px 0px 0px rgba(128, 4, 13, 1);
 }
 
 .carimgs .swiper-slide {
@@ -670,18 +725,22 @@ input[type='text'], input[type='number'] {
 }
 
 .gameknow {
-    width: 5.16rem;
+    width: 3rem;
     flex-shrink: 0;
-    line-height: .88rem;
+    line-height: .66rem;
     margin: 0 auto;
     background: #7400C3;
     border-radius: .44rem;
     color: #fff;
-    font-size: 17px;
+    font-size: 14px;
 }
 
 [v-cloak] {
     display: none !important;
+}
+
+.weui-dialog {
+    border-radius: 10px;
 }
 
 .weui-dialog__bd {
@@ -700,9 +759,152 @@ input[type='text'], input[type='number'] {
 }
 
 .weui-icon_toast.weui-loading {
-    margin: 20px 0 0 ;
+    margin: 20px 0 0;
 }
 
 .weui-toast_content {
     padding: .15rem 0;
+}
+
+@keyframes mymove {
+    0% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+    }
+    25% {
+        top: .15rem;
+        left: 6.35rem;
+        background: blue;
+        /*transform: scale(1.1);*/
+    }
+    50% {
+        top: 5.67rem;
+        left: 6.35rem;
+        background: yellow;
+        /*transform: scale(1);*/
+
+    }
+    75% {
+        top: 5.67rem;
+        left: .14rem;
+        background: green;
+        /*transform: scale(1.1);*/
+    }
+    100% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+
+    }
+}
+
+@-moz-keyframes mymove /* Firefox */
+{
+    0% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+    }
+    25% {
+        top: .15rem;
+        left: 6.35rem;
+        background: blue;
+        /*transform: scale(1.1);*/
+    }
+    50% {
+        top: 5.67rem;
+        left: 6.35rem;
+        background: yellow;
+        /*transform: scale(1);*/
+
+    }
+    75% {
+        top: 5.67rem;
+        left: .14rem;
+        background: green;
+        /*transform: scale(1.1);*/
+    }
+    100% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+
+    }
+}
+
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+    0% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+    }
+    25% {
+        top: .15rem;
+        left: 6.35rem;
+        background: blue;
+        /*transform: scale(1.1);*/
+    }
+    50% {
+        top: 5.67rem;
+        left: 6.35rem;
+        background: yellow;
+        /*transform: scale(1);*/
+
+    }
+    75% {
+        top: 5.67rem;
+        left: .14rem;
+        background: green;
+        /*transform: scale(1.1);*/
+    }
+    100% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+
+    }
+}
+
+@-o-keyframes mymove /* Opera */
+{
+    0% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+    }
+    25% {
+        top: .15rem;
+        left: 6.35rem;
+        background: blue;
+        /*transform: scale(1.1);*/
+    }
+    50% {
+        top: 5.67rem;
+        left: 6.35rem;
+        background: yellow;
+        /*transform: scale(1);*/
+
+    }
+    75% {
+        top: 5.67rem;
+        left: .14rem;
+        background: green;
+        /*transform: scale(1.1);*/
+    }
+    100% {
+        top: .15rem;
+        left: .14rem;
+        background: red;
+        /*transform: scale(1);*/
+
+    }
 }
