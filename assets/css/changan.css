@@ -286,7 +286,7 @@ ins, a {
     width: 200px;
     height: 100%;
     top: 0;
-    left: -150px;
+    left: -300px;
     overflow: hidden;
     background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, .2)), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -770,32 +770,37 @@ input[type='text'], input[type='number'] {
     0% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
+        opacity: 1;
         /*transform: scale(1);*/
     }
     25% {
         top: .15rem;
         left: 6.35rem;
-        background: blue;
+       background: yellow;
+        opacity: .25;
         /*transform: scale(1.1);*/
     }
     50% {
         top: 5.67rem;
         left: 6.35rem;
         background: yellow;
+        opacity: .5;
         /*transform: scale(1);*/
 
     }
     75% {
         top: 5.67rem;
         left: .14rem;
-        background: green;
+        background: yellow;
         /*transform: scale(1.1);*/
+        opacity: .75;
     }
     100% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
+        opacity: 1;
         /*transform: scale(1);*/
 
     }
@@ -806,13 +811,13 @@ input[type='text'], input[type='number'] {
     0% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
     }
     25% {
         top: .15rem;
         left: 6.35rem;
-        background: blue;
+       background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
@@ -825,13 +830,13 @@ input[type='text'], input[type='number'] {
     75% {
         top: 5.67rem;
         left: .14rem;
-        background: green;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     100% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
 
     }
@@ -842,13 +847,13 @@ input[type='text'], input[type='number'] {
     0% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
     }
     25% {
         top: .15rem;
         left: 6.35rem;
-        background: blue;
+       background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
@@ -861,13 +866,13 @@ input[type='text'], input[type='number'] {
     75% {
         top: 5.67rem;
         left: .14rem;
-        background: green;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     100% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
 
     }
@@ -878,13 +883,13 @@ input[type='text'], input[type='number'] {
     0% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
     }
     25% {
         top: .15rem;
         left: 6.35rem;
-        background: blue;
+       background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
@@ -897,13 +902,13 @@ input[type='text'], input[type='number'] {
     75% {
         top: 5.67rem;
         left: .14rem;
-        background: green;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     100% {
         top: .15rem;
         left: .14rem;
-        background: red;
+        background: yellow;
         /*transform: scale(1);*/
 
     }

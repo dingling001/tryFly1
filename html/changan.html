@@ -46,7 +46,7 @@
             <div class="game" @click="showtips">
                 <img src="../assets/imgs/changan/tigger.png" alt="">
                 <!--<div class="gamebtn"></div>-->
-                <div class="donghua"></div>
+                <!--<div class="donghua"></div>-->
                 <!--<div class="donghua delay-1"></div>-->
                 <!--<div class="donghua delay-2"></div>-->
                 <!--<div class="donghua delay-3"></div>-->
@@ -87,8 +87,6 @@
             </div>
             <div class="inputbox"><label>备注</label><input type="text" placeholder="" v-model="remark"/></div>
             <div class="formbtn" @click="orderform">确认提交</div>
-            <div class="formbtn" @click="showcode">查看兑换码</div>
-
         </form>
         <form class="form" v-else>
             <div class="fapiao" v-if="fapiao">
@@ -103,6 +101,7 @@
                        accept="image/png,image/jpeg,image/gif,image/jpg"/>
             </div>
             <div class="formbtn" @click="uploadFapiao">确认提交</div>
+            <div class="formbtn" @click="showcode" v-if="cancode">查看兑换码</div>
         </form>
         <div class="agreement">点击确认提交、上传发票 即视为同意 <a href="./shengming.html">《个人信息保护声明》</a>和<a
                 href="./yszc.html">《隐私政策》</a>您的个人资料将会提交至长安厂商的授权经销商或车集市客服 与您进一步沟通购车事宜。
@@ -319,7 +318,8 @@
             text: '加载中...',
             show_code: false,
             codes: '',
-            codetitle: '温馨提示'
+            codetitle: '温馨提示',
+            cancode: false
         },
         created() {
             this.$nextTick(() => {
@@ -335,8 +335,9 @@
                     cartype_val = '新远景',//默认车型 为空默认第一个
                     canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
                     email = 'info@singsdigital.cn',//默认邮箱
-                    title = '中奖结果',//中奖码 默认为温馨提示
+                    title = '温馨提示',//中奖码 默认为温馨提示
                     codetitle = '温馨提示',//兑换码头
+                    // cancode=false  上传完发票改为真
                     codes = '';//兑换码
                 for (var i in this.city_data) {
                     for (var j in  this.city_data[i].sub) {
@@ -446,6 +447,9 @@
             // 确认上传
             uploadFapiao() {
                 console.log(this.fapiao)
+
+
+                this.cancode = true;
             },
             // 获取本地路径
             getObjectURL(file) {
@@ -479,6 +483,8 @@
             // 关闭窗口
             closeMold() {
                 this.show_box = false;
+                this.show_code = false;
+
                 //  TODO
             },
             // ios底部select失去焦点导致页面被顶起，
