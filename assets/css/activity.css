@@ -637,9 +637,9 @@ input[type='text'], input[type='number'] {
 }
 
 .gameknow {
-    width: 5.16rem;
+    width: 3rem;
     flex-shrink: 0;
-    line-height: .88rem;
+    line-height: .66rem;
     margin: 0 auto;
     background: #7400C3;
     border-radius: .44rem;
@@ -672,4 +672,7 @@ input[type='text'], input[type='number'] {
 
 .weui-toast_content {
     padding: .15rem 0;
+}
+.weui-dialog__bd{
+    line-height: 20px;
 }

@@ -31,7 +31,7 @@
                     <li><span class="circle">》</span>成功购车者，通过车集市上传发票认证后,可有机会获得价值50,000元购车大礼包；</li>
                 </ul>
                 <ul class="tips">
-                    <li>· 本次活动适用于吉利、领克全系车型</li>
+                    <li>· 本次活动适用于CS55PLUS、锐程CC车型</li>
                     <li>· 活动最终解释权归北京星系互动科技有限公司所有</li>
                 </ul>
             </div>
@@ -96,7 +96,7 @@
             <div class="formbtn" @click="uploadFapiao">确认提交</div>
         </form>
         <div class="agreement">点击确认提交、上传发票 即视为同意 <a href="./shengming.html">《个人信息保护声明》</a>和<a
-                href="./yszc.html">《隐私政策》</a>您的个人资料将会提交至吉利厂商的授权经销商或车集市客服与您进一步沟通购车事宜。
+                href="./yszc.html">《隐私政策》</a>您的个人资料将会提交至长安厂商的授权经销商或车集市客服 与您进一步沟通购车事宜。
         </div>
     </div>
 
@@ -131,7 +131,7 @@
             <!--</div>-->
             <!--</div>-->
         </div>
-        <div class="swiper-container carimgs" v-if="activeInfo.cartypedata.length&&swiperitem.lubo.length">
+        <div class="swiper-container carimgs" v-if="swiperitem.lubo.length">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="(s,index) in swiperitem.lubo"><img :src="s" alt=""></div>
                 <!--<div class="swiper-slide"><img src="../assets/imgs/c2.jpg" alt=""></div>-->
@@ -165,7 +165,6 @@
 <script type="text/javascript">
     Vue.filter('NumFormat', function (value) {
         if (!value) return '0';
-
         /*原来用的是Number(value).toFixed(0)，这样取整时有问题，例如0.51取整之后为1，感谢Nils指正*/
         var intPart = Number(value) | 0; //获取整数部分
         var intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,'); //将整数部分逢三一断
@@ -196,23 +195,78 @@
                 start_date: '11月22日',
                 end_date: "12月6日",
                 price: '9999',
-                cartypedata: [{
-                    "typename": "CS55PLUS",
-                    "list": [{
-                        "id": 1,
-                        "value": "CS55PLUS",
-                        "images": "/uploads/20191110/0bc369aa4d458d193062fea33ecbc2d5.jpg,/uploads/20191110/4d65d5e0b81e908947ee21109043febe.jpg,/uploads/20191110/6785eb030b34afaa2716731334e1893d.jpg,/uploads/20191110/a1625bd05a9733a87e6139c1f7050bb9.jpg",
-                        "lubo": ["http://geely.com/uploads/20191110/0bc369aa4d458d193062fea33ecbc2d5.jpg", "http://geely.com/uploads/20191110/4d65d5e0b81e908947ee21109043febe.jpg", "http://geely.com/uploads/20191110/6785eb030b34afaa2716731334e1893d.jpg", "http://geely.com/uploads/20191110/a1625bd05a9733a87e6139c1f7050bb9.jpg"]
-                    }]
-                }, {
-                    "typename": "\u9510\u7a0bCC",
-                    "list": [{
-                        "id": 2,
-                        "value": "\u9510\u7a0bCC",
-                        "images": "/uploads/20191110/40841faf148d2a270992073dc062e6ee.jpg,/uploads/20191110/1af59cb3731b97688a272f3da1bd7c2d.png,/uploads/20191110/b3c8f21c3c6e750ccfd53f811eaa9bf2.jpg,/uploads/20191110/0c3616f29d099661cefde7890b039aca.jpg",
-                        "lubo": ["http://geely.com/uploads/20191110/40841faf148d2a270992073dc062e6ee.jpg", "http://geely.com/uploads/20191110/1af59cb3731b97688a272f3da1bd7c2d.png", "http://geely.com/uploads/20191110/b3c8f21c3c6e750ccfd53f811eaa9bf2.jpg", "http://geely.com/uploads/20191110/0c3616f29d099661cefde7890b039aca.jpg"]
-                    }]
-                }]
+                cartypedata: [
+                    {
+                        typename: '吉利',
+                        list: [
+                            {
+                                value: '全新金刚',
+                                id: 1,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新帝豪三厢',
+                                id: 2,
+                                img: '../assets/imgs/caricon1.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
+                            },
+                            {
+                                value: '全球鹰',
+                                id: 3,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新远景',
+                                id: 4,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '博越PRO',
+                                id: 5,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                        ],
+                    },
+                    {
+                        typename: '领克',
+                        list: [
+                            {
+                                value: '全新金刚',
+                                id: 1,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新帝豪三厢',
+                                id: 2,
+                                img: '../assets/imgs/caricon1.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg', '../assets/imgs/c1.png']
+                            },
+                            {
+                                value: '全球鹰',
+                                id: 3,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c3.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '新远景',
+                                id: 4,
+                                img: '../assets/imgs/caricon.jpg',
+                                lubo: ['../assets/imgs/c1.png', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                            {
+                                value: '博越PRO',
+                                id: 5,
+                                img: '../assets/imgs/caricon2.jpeg',
+                                lubo: ['../assets/imgs/c2.jpg', '../assets/imgs/c2.jpg', '../assets/imgs/c3.jpg']
+                            },
+                        ],
+                    }
+                ],
             },
             cartType: [{name: '全新金刚', id: 1}, {name: '新帝豪三厢', id: 2}, {name: '全球鹰', id: 3}, {
                 name: '新远景',
@@ -242,9 +296,9 @@
             email: 'info@singsdigital.cn',//中奖发的邮箱
             loadShow: false,
             mask: false,
-            text: '加载中...',
+            text: '加载中...'
         },
-        mounted() {
+        created() {
             this.$nextTick(() => {
                 // console.log(this.cartypedata)
                 // console.log(this.city_data)
@@ -281,7 +335,6 @@
                 this.canPrize = canPrize;
                 this.email = email;
                 this.title = title;
-
             });
         },
 
@@ -349,8 +402,7 @@
             // 切换车类
             changeImg(index) {
                 this.sindex = index;
-                this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[0]
-                console.log(this.swiperitem)
+                this.swiperitem = this.activeInfo.cartypedata[this.sindex].list[index]
             },
             // 切换轮播图
             changeswiper() {
