@@ -729,7 +729,7 @@ input[type='text'], input[type='number'] {
     flex-shrink: 0;
     line-height: .66rem;
     margin: 0 auto;
-    background: #7400C3;
+    background: #E40011;
     border-radius: .44rem;
     color: #fff;
     font-size: 14px;
@@ -745,16 +745,31 @@ input[type='text'], input[type='number'] {
 
 .weui-dialog__bd {
     color: #8E97A4;
-    font-size: 12px;
+    font-size: 16px;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+    /*background-image: url("../imgs/changan/maomi.jpeg");*/
+
+}
+
+.weui-dialog__bd .img {
+    width: 50px;
+    height: 58px;
+    background-image: url(../imgs/changan/maomi.jpeg);
+    background-repeat: no-repeat;
+    background-position: -26px -9px;
+    background-size: 106px;
+    flex-shrink: 0;
 }
 
 .weui-dialog__btn:active {
-    background: #7400C3;
+    background: #E40011;
     opacity: .7;
 }
 
 .email {
-    color: #7400C3;
+    color: #E40011;
     font-size: 13px;
 }
 
@@ -777,7 +792,7 @@ input[type='text'], input[type='number'] {
     25% {
         top: .15rem;
         left: 6.35rem;
-       background: yellow;
+        background: yellow;
         opacity: .25;
         /*transform: scale(1.1);*/
     }
@@ -817,7 +832,7 @@ input[type='text'], input[type='number'] {
     25% {
         top: .15rem;
         left: 6.35rem;
-       background: yellow;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
@@ -853,7 +868,7 @@ input[type='text'], input[type='number'] {
     25% {
         top: .15rem;
         left: 6.35rem;
-       background: yellow;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
@@ -889,7 +904,7 @@ input[type='text'], input[type='number'] {
     25% {
         top: .15rem;
         left: 6.35rem;
-       background: yellow;
+        background: yellow;
         /*transform: scale(1.1);*/
     }
     50% {
