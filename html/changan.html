@@ -68,7 +68,7 @@
                 <div class="inputbox arrow ">
                     <label>省</label>
                     <select name="" v-model="pro" @change="prov_change">
-                        <option :value="item.name" v-for="(item,index) in city_data">{{item.name}}</option>
+                        <option :value="item.name" v-for="(item,index) in city_data" :selected="index==0">{{item.name}}</option>
                     </select>
                 </div>
                 <div class="inputbox arrow ">
@@ -330,9 +330,9 @@
                 // console.log(this.pro)
                 // console.log(this.cartype_val);
                 // console.log(this.cartype_val)
-                var provce = '陕西',//默认省 为空默认第一个
-                    city = '延安',//默认市 为空默认第一个
-                    cartype_val = '新远景',//默认车型 为空默认第一个
+                var provce = '北京',//默认省 为空默认第一个
+                    city = '北京',//默认市 为空默认第一个
+                    cartype_val = this.cartType[0].name,//默认车型 为空默认第一个
                     canPrize = false, //true可抽奖。false不可抽奖  //默认可抽奖状态为false，渲染后返回值赋值
                     email = 'info@singsdigital.cn',//默认邮箱
                     title = '温馨提示',//中奖码 默认为温馨提示
@@ -355,7 +355,7 @@
                     }
                 }
                 this.pro = provce;
-                this.cit = city;
+                // this.cit = city;
                 this.cartype_val = cartype_val;
                 this.canPrize = canPrize;
                 this.email = email;
@@ -473,7 +473,7 @@
                 if (this.canPrize) {
 
                 } else {
-                    this.tips = '此处仅针对通过车集市参与本次活动订车的车主未通过本活动订车的购车主无法参加'
+                    this.tips = '此处仅针对通过车集市参与本次活动订车的车主，未通过本活动订车的购车主无法参加'
                 }
             },
             // 查看兑换码
