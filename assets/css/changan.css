@@ -656,15 +656,16 @@ input[type='text'], input[type='number'] {
 
 .carimgs {
     width: 6rem;
-    height: 3.5rem;
+    /*height: 3.5rem;*/
     border-radius: 10px;
     margin: .5rem auto 0 auto;
-    background-color: rgba(0, 0, 0, 1);
+    /*background-color: rgba(0, 0, 0, 1);*/
     box-shadow: 3px 4px 0px 0px rgba(128, 4, 13, 1);
 }
 
 .carimgs .swiper-slide {
     transition: ease-in-out .2s;
+    font-size: 0;
 }
 
 .swiper-pagination-bullet {
